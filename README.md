@@ -98,7 +98,7 @@ connect IP_DEL_SERVIDOR:27015
 
 ### 📂 File Structure / Estructura de Archivos
 ```
-/hlds-docker-minimal
+/hlds-docker-dproto
 ├── docker-compose.yml
 ├── Dockerfile
 ├── .env
