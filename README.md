@@ -1,81 +1,141 @@
-[![GitHub Actions Docker Image CI](https://github.com/artkirienko/hlds-docker-dproto/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/artkirienko/hlds-docker-dproto/actions)
-[![HitCount](http://hits.dwyl.com/artkirienko/hlds-docker-dproto.svg)](http://hits.dwyl.com/artkirienko/hlds-docker-dproto)
+Here's a professional bilingual README with both English and Spanish versions:
 
-![banner](banner.png)
+# HLDS Docker - Minimalist Version (Crossfire Only) / Versión Minimalista (Solo Crossfire)
 
-# HLDS Docker dproto(47/48 Steam+noSteam)
+![Docker Icon](https://img.icons8.com/color/48/000000/docker.png)
 
-## Half-Life Dedicated Server as a Docker image
+## English Version
 
-Probably the fastest and easiest way to set up an old-school Half-Life
-Deathmatch Dedicated Server (HLDS). Both Steam and noSteam, old and new
-half-life clients can connect and play together! You don't need to know
-anything about Linux or HLDS to start a server. You just need Docker and
-this image.
+### Optimized Half-Life Dedicated Server for Docker
 
-## Quick Start
+Modified version of the original HLDS server focused on:
+- **Crossfire map only** (no map rotation)
+- **No bots** (jk_botti removed)
+- **Minimal configuration** for private servers
 
-Start a new server by running:
+### 🚀 Quick Start
 
+1. Clone the repository:
 ```bash
-docker run -it --rm -d -p27015:27015 -p27015:27015/udp artkirienko/hlds
+git clone https://github.com/tomasmetal23/hlds-docker-dproto.git
+cd hlds-docker-dproto
 ```
 
-Change the player slot size, map or `rcon_password` by running:
-
-```
-docker run -it --rm -d --name hlds -p27015:27015 -p27015:27015/udp artkirienko/hlds +map crossfire +maxplayers 12 +rcon_password SECRET_PASSWORD
-```
-
-> **Note:** Any [server config command](http://sr-team.clan.su/K_stat/hlcommandsfull.html)
-  can be passed by using `+`. But it has to follow after the image name `artkirienko/hlds`.
-
-## What is included
-
-* [HLDS Build](https://github.com/DevilBoy-eXe/hlds) `7882`. This is the last
-  known version that is compatible with last version of **dproto** that's `0.9.582`
-
-  ```
-  Protocol version 47/48
-  Exe version 1.1.2.2/Stdio (valve)
-  Exe build: 17:23:32 May 24 2018 (7882)
-  ```
-
-* [Metamod-p](https://github.com/Bots-United/metamod-p) version `1.21p38`
-
-* [AMX Mod X](https://github.com/alliedmodders/amxmodx) version `1.8.2`
-
-* **dproto** version `0.9.582`. This is the last version of **dproto**,
-  the project is abandoned.
-
-* [jk_botti](https://github.com/Bots-United/jk_botti) version `1.43`
-
-* Patched list of master servers (official and unofficial master servers
-  included), so your game server appear in game server browser of all the clients
-
-* Minimal config present, such as `mp_timelimit` and mapcycle
-
-## Default mapcycle
-
-* crossfire
-* bounce
-* datacore
-* frenzy
-* gasworks
-* lambda_bunker
-* rapidcore
-* snark_pit
-* stalkyard
-* subtransit
-* undertow
-* boot_camp
-
-## Advanced
-
-In order to use a custom server config file, add your settings
-to `valve/config/server.cfg` of this project and mount the directory as volume
-to `/opt/steam/hlds/valve/config` by running:
-
+2. Start the server:
 ```bash
-docker run -it --rm -d -p27015:27015 -p27015:27015/udp -v $(pwd)/valve/config:/opt/steam/hlds/valve/config artkirienko/hlds
+docker-compose up -d
 ```
+
+### 🔧 Modifications Made
+
+#### ❌ Removed:
+- All maps except `crossfire.bsp`
+- Bot system (jk_botti)
+- Automatic mapcycle
+- Unofficial master servers
+
+#### ✅ Maintained:
+- Steam and non-Steam client compatibility (dproto)
+- AMX Mod X 1.8.2 (essential functions only)
+- Metamod-p 1.21p38
+- Basic admin system
+
+### ⚙️ Basic Configuration
+
+#### Environment Variables (.env):
+```ini
+MAX_PLAYERS=12
+RCON_PASSWORD=your_secret_password
+```
+
+#### Ports:
+- **27015/udp** - Main server port
+
+### 🎮 Connect to Server
+From the game console:
+```bash
+connect SERVER_IP:27015
+```
+
+---
+
+## Versión en Español
+
+### Servidor Half-Life Dedicated Server optimizado para Docker
+
+Versión modificada del servidor HLDS original enfocada en:
+- **Solo mapa Crossfire** (sin rotación automática)
+- **Sin bots** (jk_botti eliminado)
+- **Configuración mínima** para servidores privados
+
+### 🚀 Inicio Rápido
+
+1. Clona el repositorio:
+```bash
+git clone https://github.com/tomasmetal23/hlds-docker-dproto.git
+cd hlds-docker-dproto
+```
+
+2. Inicia el servidor:
+```bash
+docker-compose up -d
+```
+
+### ⚙️ Configuración Básica
+
+#### Variables de Entorno (.env):
+```ini
+MAX_PLAYERS=12
+RCON_PASSWORD=tu_password_secreto
+```
+
+#### Puertos:
+- **27015/udp** - Puerto principal del servidor
+
+### 🎮 Conectarse al Servidor
+Desde la consola del juego:
+```bash
+connect IP_DEL_SERVIDOR:27015
+```
+
+---
+
+### 📂 File Structure / Estructura de Archivos
+```
+/hlds-docker-minimal
+├── docker-compose.yml
+├── Dockerfile
+├── .env
+├── valve/
+│   ├── maps/
+│   │   └── crossfire.bsp  # Only included map / Único mapa incluido
+│   └── config/            # (Optional) For custom configs / (Opcional) Para configs personalizadas
+```
+
+### 🛠 Advanced Customization / Personalización Avanzada
+
+To add custom configurations:
+1. Create a `server.cfg` file in `valve/config/`
+2. Rebuild the container:
+```bash
+docker-compose down && docker-compose up -d --build
+```
+
+Para añadir configuraciones personalizadas:
+1. Crea un archivo `server.cfg` en `valve/config/`
+2. Reconstruye el contenedor:
+```bash
+docker-compose down && docker-compose up -d --build
+```
+
+### ℹ️ Technical Notes / Notas Técnicas
+- HLDS Version: 7882 (Protocol 47/48)
+- **dproto** 0.9.582 for mixed compatibility
+- **-nomaster** mode enabled (server invisible in public lists)
+
+- Versión HLDS: 7882 (Protocolo 47/48)
+- **dproto** 0.9.582 para compatibilidad mixta
+- Modo **-nomaster** activado (servidor invisible en listados públicos)
+
+> ⚠️ This server is configured as private by default. To make it public, remove `-nomaster` and `+sv_visible 0` from docker-compose.yml
+> ⚠️ Este servidor está configurado como privado por defecto. Para hacerlo público, elimina `-nomaster` y `+sv_visible 0` del docker-compose.yml
