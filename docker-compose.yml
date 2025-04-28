@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  hlds:
+    build: .
+    image: hlds-dproto-nosteam
+    env_file: .env
+    ports:
+      - "47015:27015/udp"  
+    restart: unless-stopped
+    command: >
+      +map crossfire
+      +maxplayers 12
+      -nomaster          
+      +sv_visible 0      
+      +mp_timelimit 0   
+      +sys_ticrate 1000
+    environment:
+      - RCON_PASSWORD=SECRET_PASSWORD  

@@ -1,12 +1,1 @@
 crossfire
-bounce
-datacore
-frenzy
-gasworks
-lambda_bunker
-rapidcore
-snark_pit
-stalkyard
-subtransit
-undertow
-boot_camp

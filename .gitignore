@@ -1,2 +1,3 @@
 # MacOS filesystem
 .DS_Store
+.env
