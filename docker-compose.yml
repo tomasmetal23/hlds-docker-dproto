@@ -5,7 +5,7 @@ services:
     image: hlds-dproto-nosteam
     env_file: .env
     ports:
-      - "47015:27015/udp"  
+      - "27015:27015/udp"  
     restart: unless-stopped
     command: >
       +map crossfire
