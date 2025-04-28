@@ -44,7 +44,6 @@ docker-compose up -d
 
 #### Environment Variables (.env):
 ```ini
-MAX_PLAYERS=12
 RCON_PASSWORD=your_secret_password
 ```
 
@@ -85,7 +84,6 @@ docker-compose up -d
 
 #### Variables de Entorno (.env):
 ```ini
-MAX_PLAYERS=12
 RCON_PASSWORD=tu_password_secreto
 ```
 
