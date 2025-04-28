@@ -1,5 +1,3 @@
-Here's a professional bilingual README with both English and Spanish versions:
-
 # HLDS Docker - Minimalist Version (Crossfire Only) / Versión Minimalista (Solo Crossfire)
 
 ![Docker Icon](https://img.icons8.com/color/48/000000/docker.png)
